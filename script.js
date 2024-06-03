@@ -1,38 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Website</title>
-    <style>
-        /* CSS styles */
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
-    <section>
-        <h2>About Us</h2>
-        <p>This is where you can introduce your website.</p>
-        <button id="clickMe">Click Me</button>
-        <p id="message"></p>
-    </section>
-    <footer>
-        <p>&copy; 2024 Your Website</p>
-    </footer>
-    <script>
-        // JavaScript code
-        document.getElementById("clickMe").addEventListener("click", function() {
-            document.getElementById("message").textContent = "Button clicked!";
-        });
-    </script>
-</body>
-</html>
+var client_id = '225107ad1f3042808bfb33ebcea5d3d7';
+var client_secret = 'f48578ee47bd43b38f7bd611ad330dd2';
+
+var authOptions = {
+  url: 'https://accounts.spotify.com/api/token',
+  headers: {
+    'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
+  },
+  form: {
+    grant_type: 'client_credentials'
+  },
+  json: true
+};
+
+request.post(authOptions, function(error, response, body) {
+  if (!error && response.statusCode === 200) {
+    var token = body.access_token;
+  }
+});
